@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>五羊传说选择题</title>
+<style>
+  .container {
+    /*text-align: center;*/
+    width: 50%; /* 想要的宽度 */
+    margin: 0 auto; /* 水平居中 */
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-start; */
+    height: 60vh; /* 容器高度设为视口高度的100% */
+    line-height: 1.2;/*行间距*/
+  }
+</style>
+<style>
+        body {
+            background-color: lightyellow; /* 设置背景颜色 */
+        }
+    </style>
+<style>
+.option {
+  display: inline-block; /* 使选项在同一行显示 */
+  margin-right: 10px; /* 添加一些右外边距，以便选项之间有一定的间隔 */
+}
+</style>
+<script>
+function checkAnswer(questionName, correctAnswer, nextQuestionId) {
+  console.log("Checking answer for question: " + questionName); // 添加调试信息
+  var radios = document.getElementsByName(questionName);
+  var resultDiv = document.getElementById('result-' + questionName);
+  var isAnswered = false;
+  for (var i = 0, length = radios.length; i < length; i++) {
+    if (radios[i].checked) {
+      isAnswered = true;
+      if (radios[i].value === correctAnswer) {
+        resultDiv.innerHTML = '选择正确！';
+        resultDiv.style.color = 'green';
+        // 显示下一题或完成信息
+        if (nextQuestionId) {
+          var nextQuestion = document.getElementById(nextQuestionId);
+          if (nextQuestion) {
+            nextQuestion.style.display = 'block';
+          }
+        } else if (questionName === 'question5') {
+          console.log("Answer for question 5 is correct. Showing completion message."); // 添加调试信息
+          // 如果是第五题并且选择正确，显示完成信息
+          document.getElementById('completion-message').style.display = 'block';
+        }
+      } else {
+        resultDiv.innerHTML = '选择错误,请重新作答！';
+        resultDiv.style.color = 'red';
+      }
+      break;
+    }
+  }
+  if (!isAnswered) {
+    resultDiv.innerHTML = '请选择一个选项！';
+    resultDiv.style.color = 'red';
+  }
+}
+</script>
+</head>
+<body>
+  <div class="container">
+    <img background-image>
+<h1 style="font-size: 20px;">五羊传说选择题</h1>
+<!-- 第一题 -->
+<div id="question1">
+  <p>1. 五羊传说中，五位仙人骑着羊降临广州，他们手中拿着的是什么？</p>
+  <div class="option" id="q1o1"><label><input type="radio" name="question1" value="A"> A. 麦穗</label><br></div>
+  <div class="option" id="q1o2"><label><input type="radio" name="question1" value="B"> B. 稻穗</label><br></div>
+  <div class="option" id="q1o3"><label><input type="radio" name="question1" value="C"> C. 玉米穗</label><br></div>
+  <button type="button" onclick="checkAnswer('question1', 'B', 'question2')">提交答案</button>
+  <p id="result-question1"></p>
+</div>
+<!-- 第二题，初始时隐藏 -->
+<div id="question2" style="display: none;">
+  <p>2. 五羊石像作为广州市的标志，其高度是多少？</p>
+  <div class="option" id="q2o1"><label><input type="radio" name="question2" value="A"> A. 8米</label><br></div>
+  <div class="option" id="q2o2"><label><input type="radio" name="question2" value="B"> B. 11米</label><br></div>
+  <div class="option" id="q2o3"><label><input type="radio" name="question2" value="C"> C. 15米</label><br></div>
+  <button type="button" onclick="checkAnswer('question2', 'B', 'question3')">提交答案</button>
+  <p id="result-question2"></p>
+</div>
+<!-- 第三题，初始时隐藏 -->
+<div id="question3" style="display: none;">
+  <p>3. 五羊石像的创作者是谁？</p>
+  <div class="option" id="q3o1"><label><input type="radio" name="question3" value="A"> A. 尹积昌、陈本宗、孔繁伟</label><br></div>
+  <div class="option" id="q3o2"><label><input type="radio" name="question3" value="B"> B. 张大千、徐悲鸿、齐白石</label><br></div>
+  <div class="option" id="q3o3"><label><input type="radio" name="question3" value="C"> C. 罗丹、米开朗基罗、达芬奇</label><br></div>
+  <button type="button" onclick="checkAnswer('question3', 'A', 'question4')">提交答案</button>
+  <p id="result-question3"></p>
+</div>
+<!-- 第四题，初始时隐藏 -->
+<div id="question4" style="display: none;">
+  <p>4. 五羊传说中，五只羊分别象征着哪些品质？</p>
+  <div class="option" id="q4o1"><label><input type="radio" name="question4" value="A"> A. 勇敢、智慧、勤劳、团结、善良</label><br></div>
+  <div class="option" id="q4o2"><label><input type="radio" name="question4" value="B"> B. 报恩、慈爱、勤劳、互助、勇敢</label><br></div>
+  <div class="option" id="q4o3"><label><input type="radio" name="question4" value="C"> C. 忠诚、坚韧、创新、和谐、进取</label><br></div>
+  <button type="button" onclick="checkAnswer('question4', 'B', 'question5')">提交答案</button>
+  <p id="result-question4"></p>
+</div>
+<div id="question5" style="display: none;">
+  <p>5. 五羊传说对广州城市的别称有哪些？</p>
+  <div class="option" id="q5o1"><label><input type="radio" name="question5" value="A"> A. 星城、花城、水城</label><br></div>
+  <div class="option" id="q5o2"><label><input type="radio" name="question5" value="B"> B. 龙城、凤城、石城</label><br></div>
+  <div class="option" id="q5o3"><label><input type="radio" name="question5" value="C"> C.  五羊城、羊城、穗城</label><br></div>
+  <button type="button" onclick="checkAnswer('question5', 'C', null)">提交答案</button>
+  <p id="result-question5"></p>
+</div>
+<div id="completion-message" style="display: none; color: green;">
+  <p>恭喜你，通过了所有问题考核！请回到石雕吧~</p>
+</div>
+</div>
+</body>
+</html>
